@@ -1,0 +1,37 @@
+[package]
+name = "grammers-mtsender"
+version = "0.5.0"
+authors = ["Lonami Exo <totufals@hotmail.com>"]
+license = "MIT OR Apache-2.0"
+description = """
+A sender implementation using the Mobile Transport Protocol.
+"""
+homepage = "https://github.com/Lonami/grammers"
+documentation = "https://docs.rs/grammers-mtsender"
+repository = "https://github.com/Lonami/grammers"
+keywords = ["api", "mtproto", "telegram", "tl"]
+categories = ["api-bindings", "network-programming"]
+edition = "2021"
+
+[features]
+proxy = ["tokio-socks", "trust-dns-resolver", "url"]
+
+[dependencies]
+bytes = "1.5.0"
+futures-util = { version = "0.3.15", default_features = false, features = [
+    "alloc"
+] }
+grammers-crypto = { path = "../grammers-crypto", version = "0.6.0" }
+grammers-mtproto = { path = "../grammers-mtproto", version = "0.5.0" }
+grammers-tl-types = { path = "../grammers-tl-types", version = "0.5.1", features = [ "tl-mtproto" ] }
+log = "0.4.20"
+tokio = { version = "1.5.0", default_features = false, features = ["net", "io-util", "sync", "time", "macros"] }
+tokio-socks = { version = "0.5.1", optional = true }
+tracing = "0.1.40"
+trust-dns-resolver = { version = "0.23.2", optional = true }
+url = { version = "2.4.1", optional = true }
+
+[dev-dependencies]
+simple_logger = { version = "4.2.0", default-features = false, features = ["colors"] }
+tokio = { version = "1.34.0", features = ["rt"] }
+toml = "0.8.8"
